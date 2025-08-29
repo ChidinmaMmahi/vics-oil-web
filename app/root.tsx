@@ -9,6 +9,10 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import Header from "./components/Header";
+import WhatsappLink from "./components/WhatsapLink";
+import { ImWhatsapp } from "react-icons/im";
+import Footer from "./components/Footer";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +46,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <div className="fixed top-0 left-0 right-0 z-50 ">
+        <Header />
+      </div>
+
+      <Outlet />
+
+      <div>
+        <Footer />
+      </div>
+
+      <div className="fixed bottom-2 right-2 lg:bottom-8 lg:right-8 z-50">
+        <WhatsappLink>
+          <div className="bg-green-500 hover:opacity-60 transition-all duration-500 rounded-full p-4">
+            <ImWhatsapp className="text-white text-2xl" />
+          </div>
+        </WhatsappLink>
+      </div>
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
