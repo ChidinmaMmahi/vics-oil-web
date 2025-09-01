@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import Button from "~/components/Button";
+import WhatsappLink from "~/components/WhatsapLink";
 
 type ProductModalProps = {
   imageUrl: string;
@@ -35,11 +36,11 @@ const ProductModal = ({
 
   return (
     <section
-      className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-start justify-center pt-24"
+      className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-start justify-center pt-20"
       onClick={handleBackdropClick}
     >
       <div
-        className="bg-white rounded-lg p-4 mx-4 shadow-2xl w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl relative"
+        className="bg-white dark:bg-black dark:border-2 dark:border-white/10 rounded-lg p-4 mx-4 shadow-2xl w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl relative"
         ref={modalRef}
       >
         <Button
@@ -48,7 +49,7 @@ const ProductModal = ({
         >
           <IoCloseSharp className="text-lg" />
         </Button>
-        <div className="h-96 w-full rounded mb-2 overflow-hidden bg-gray-200">
+        <div className="h-96 w-full rounded mb-2 overflow-hidden bg-gray-200 dark:bg-white/20">
           <img
             src={imageUrl}
             alt={name}
@@ -57,11 +58,16 @@ const ProductModal = ({
         </div>
         <div className="space-y-2 mb-6">
           <h2 className="text-xl font-semibold text-yellow-600">{name}</h2>
-          <p className="text-gray-700">{description}</p>
+          <p className="text-white/70">{description}</p>
         </div>
-        <div>
+        <div className="mb-4">
           <h3 className="text-xl font-bold text-green-700">${price}</h3>
         </div>
+        <WhatsappLink
+          message={`Hi, I want to buy ${name} for $${price} as stated on your website`}
+        >
+          <Button>Buy Now</Button>
+        </WhatsappLink>
       </div>
     </section>
   );

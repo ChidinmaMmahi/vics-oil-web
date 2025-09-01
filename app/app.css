@@ -7,7 +7,7 @@
 
 html,
 body {
-  @apply bg-yellow-50 dark:bg-gray-950;
+  @apply bg-white dark:bg-gray-950/10;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -18,12 +18,8 @@ body {
   @apply px-2 sm:px-10 lg:px-20;
 }
 
-/* input,
-textarea {
-  @apply bg-black/20 border border-black/30 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-red-800;
-} */
-
-/* form div {
-  @apply flex flex-col gap-1;
-} */
+.text-outline {
+  -webkit-text-stroke: 1.5px #5c1313;
+  color: white;
+}
 

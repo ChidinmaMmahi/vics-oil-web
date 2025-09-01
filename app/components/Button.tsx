@@ -5,7 +5,7 @@ type Button = {
 };
 
 const generalClasses =
-  "bg-red-900 text-white px-8 py-2.5 cursor-pointer hover:scale-[1.05] transition-all duration-500 rounded-sm";
+  "bg-red-900 dark:bg-red-900/90 text-white dark:text-white/60 px-8 py-2.5 cursor-pointer hover:scale-[1.05] transition-all duration-500 rounded-sm";
 
 const Button = ({ children, extraClasses, onClick }: Button) => {
   return (

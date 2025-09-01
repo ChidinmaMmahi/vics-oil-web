@@ -12,8 +12,9 @@ const BgImageBlock = ({ children, imageUrl }: BgImageBlock) => {
       style={{ backgroundImage: imageUrl }}
     >
       <div className="absolute inset-0 bg-green-950/70"></div>
-
-      {children}
+      <div className="relative z-10 mx-auto px-section py-24 text-center">
+        {children}
+      </div>
     </section>
   );
 };

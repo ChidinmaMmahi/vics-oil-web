@@ -28,7 +28,7 @@ const HomePage = () => {
 
   return (
     <PageAnimation>
-      <main className="">
+      <main className="dark:text-white/70">
         <section className="relative h-[70vh] overflow-hidden">
           {/* Image Layer */}
           <img
@@ -55,7 +55,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <section className="pb-48 pt-40 px-section bg-white">
+        <section className="pb-48 pt-40 px-section">
           <h2 className="text-4xl font-bold mb-3 sm:mb-5">
             <span className="text-xl block">WELCOME TO </span>The{" "}
             <span className="text-green-800">VicsOil </span>
@@ -83,19 +83,17 @@ const HomePage = () => {
         </section>
 
         <BgImageBlock imageUrl="url('/images/sunny-leaves.jpg')">
-          <div className="relative z-10 mx-auto px-section py-52 text-center">
-            <h2 className="text-4xl font-bold mb-3 sm:mb-5">
-              Get <span className="text-red-400">Quality</span> Palm Oil At Very
-              Affordable Prices
-            </h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-              quos.
-            </p>
-          </div>
+          <h2 className="text-4xl font-bold mb-3 sm:mb-5">
+            Get <span className="text-red-400">Quality</span> Palm Oil At Very
+            Affordable Prices
+          </h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+            quos.
+          </p>
         </BgImageBlock>
 
-        <section className="pt-24 pb-48 px-section bg-white">
+        <section id="products" className="pt-24 pb-48">
           <ProductsList />
         </section>
 

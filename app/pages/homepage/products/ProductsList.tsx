@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { products } from "./products";
 import type { Product } from "./products";
 import ProductModal from "./ProductModal";
+import WhatsappLink from "~/components/WhatsapLink";
+import Button from "~/components/Button";
 
 const ProductsList = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -10,16 +12,16 @@ const ProductsList = () => {
       <h2 className="text-4xl font-bold mb-5 sm:mb-7 text-center text-red-800">
         Products we offer
       </h2>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 dark:text-white/70">
         <div className="overflow-x-auto pb-7">
-          <div className="flex gap-6 w-max px-1 py-5">
+          <div className="flex gap-6 w-max py-5">
             {products.map((product) => (
               <div
                 key={product.id}
                 className="bg-black/10 border-2 border-green-800/20 p-4 rounded-lg min-w-[250px] max-w-[300px] flex-shrink-0 hover:-translate-y-4 hover:border-green-800 hover:shadow-xl transition-all duration-500 cursor-pointer"
                 onClick={() => setSelectedProduct(product)}
               >
-                <div className="h-48 bg-white w-full rounded mb-2">
+                <div className="h-48 bg-white dark:bg-black w-full rounded mb-2">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -32,6 +34,15 @@ const ProductsList = () => {
                 <h4 className="text-center text-green-800 font-bold text-3xl mb-3">
                   ${product.price.toFixed(2)}
                 </h4>
+                <WhatsappLink
+                  message={`Hi, I want to buy ${product.name} for $${product.price} as stated on your website`}
+                >
+                  <div onClick={(e) => e.stopPropagation()}>
+                    <Button extraClasses="w-full !bg-green-800/50 hover:!bg-green-800/80 transition-all duration-1000">
+                      Buy Now
+                    </Button>
+                  </div>
+                </WhatsappLink>
               </div>
             ))}
           </div>

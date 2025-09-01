@@ -98,7 +98,7 @@ const Header = () => {
       <header
         className={`flex items-center justify-between shadow-lg py-6 px-section transition-all duration-750 ${
           isScrolled
-            ? "bg-white/60 backdrop-blur-sm"
+            ? "bg-white/60 dark:bg-black/60 backdrop-blur-sm"
             : "bg-transparent text-amber-400/90"
         }`}
       >

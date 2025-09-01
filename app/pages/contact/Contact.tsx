@@ -1,3 +1,6 @@
+import emailjs from "emailjs-com";
+import { useRef } from "react";
+
 import Button from "~/components/Button";
 import PageAnimation from "~/components/PageAnimation";
 import PageMargin from "~/components/PageMargin";
@@ -17,45 +20,86 @@ type SocialContactProps = {
   icon: React.ReactNode;
   label: string;
   value: string;
+  link?: string;
 };
 
 const FormInput = ({ label, type, name, textarea }: FormInputProps) => {
   const inputClasses =
-    "bg-black/20 border border-black/30 rounded-md p-2 focus:outline-none focus:border-red-700";
+    "bg-black/20 dark:bg-white/20 border border-black/30 dark:border-white/10 rounded-md p-2 focus:outline-none focus:border-red-700 dark:focus:border-red-700/50";
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={name}>{label}</label>
+      <label htmlFor={name} className="dark:text-white/70 text-sm">
+        {label}
+      </label>
       {textarea ? (
         <textarea
           id={name}
           name={name}
           className={`${inputClasses} resize-none`}
           rows={5}
+          required
         />
       ) : (
-        <input type={type} id={name} name={name} className={inputClasses} />
+        <input
+          type={type}
+          id={name}
+          name={name}
+          className={inputClasses}
+          required
+        />
       )}
     </div>
   );
 };
 
-const SocialContact = ({ icon, label, value }: SocialContactProps) => {
+const SocialContact = ({ icon, label, value, link }: SocialContactProps) => {
   return (
-    <div className="flex items-center gap-2">
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-white/10 dark:text-white/50 p-2 rounded-md cursor-pointer"
+    >
       <div className="text-2xl">{icon}</div>
       <div>
         <p className="text-sm font-medium">{label}</p>
         <p className="text-xs">{value}</p>
       </div>
-    </div>
+    </a>
   );
 };
 
 const Contact = () => {
+  const form = useRef<HTMLFormElement>(null);
+
+  const sendEmail = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.current) return;
+
+    emailjs
+      .sendForm(
+        "service_zqfqp8t",
+        "template_0mz1ben",
+        form.current,
+        "ec5u3scPKvYCGcfru"
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          form.current?.reset();
+        },
+        (error) => {
+          alert("Something went wrong. Please try again later.");
+          console.error(error);
+        }
+      );
+  };
+
   return (
     <PageAnimation>
       <PageMargin>
-        <main className="pb-20 px-section">
+        <main className="pb-20 px-section pt-4">
           <section className="w-full h-[400px] rounded overflow-hidden shadow-lg mb-10">
             <iframe
               title="VicsOil Location"
@@ -69,7 +113,12 @@ const Contact = () => {
             ></iframe>
           </section>
 
-          <form action="" className="mb-10 md:w-2/3 xl:w-1/2 space-y-5">
+          <form
+            action=""
+            className="mb-10 md:w-2/3 xl:w-1/2 space-y-5"
+            ref={form}
+            onSubmit={sendEmail}
+          >
             <h1 className="text-2xl font-medium mb-4 text-red-800">
               Leave Us A Message
             </h1>
@@ -89,22 +138,26 @@ const Contact = () => {
             <SocialContact
               icon={<MdPhone className="text-green-600" />}
               label="Phone"
-              value="+234 813 555 5555"
+              value="09027184113"
+              link="tel:09027184113"
             />
             <SocialContact
               icon={<MdEmail className="text-blue-700" />}
               label="Email"
               value="vicsoilng@gmail.com"
+              link="mailto:vicsoilng@gmail.com"
             />
             <SocialContact
               icon={<ImWhatsapp className="text-green-600" />}
               label="WhatsApp"
-              value="+234 813 555 5555"
+              value="+234 902 718 4113"
+              link="https://wa.me/2349027184113"
             />
             <SocialContact
               icon={<LuInstagram className="text-pink-700" />}
               label="Instagram"
-              value="vicsoilng"
+              value="vics_oil"
+              link="https://www.instagram.com/vics_oil/"
             />
             <SocialContact
               icon={<FaFacebook className="text-blue-700" />}
